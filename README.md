@@ -30,14 +30,60 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    return {
-        "message": "Hello FastAPI World"
-    }
+  return {
+    "message": "Hello FastAPI World"
+  }
 ```
 
 # Step 2: Create CRUD actions
 
 ### Create
 
-- use pydantic for data validation
-- Create a class item as a model/item
+```
+@app.post("/todos")
+async def create_todos(todo_item: Todo):
+  todo_list.append(todo_item)
+  return {"Message": "Todo Item Added"}
+```
+
+### Read
+
+```
+# Get All Todos
+@app.get("/todos")
+async def get_todos():
+  return {"todo_list": todo_list}
+
+# Get Single Todo item
+@app.get("/todos/{todo_id}")
+async def get_todo(todo_id: int):
+  for todo_item in todo_list:
+    if todo_item.id == todo_id:
+      return {"todo": todo_item}
+  return {"Message": "No todos found"}
+```
+
+### Update
+
+```
+@app.put("/todos/{todo_id}")
+async def update_todo(todo_id: int, todo_object: Todo):
+  for todo_item in todo_list:
+    if todo_item.id == todo_id:
+      todo_item.id = todo_id
+      todo_item.item = todo_object.item
+      return {"todo": todo_item}
+  return {"Message": "No todos found"}
+```
+
+### Delete
+
+```
+@app.delete("/todos/{todo_id}")
+async def delete_todo(todo_id: int):
+  for todo_item in todo_list:
+    if todo_item.id == todo_id:
+      todo_list.remove(todo_item)
+      return {"Message": "Todo item has been deleted"}
+  return {"Message": "No todos found"}
+```
