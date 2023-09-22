@@ -1,13 +1,27 @@
 # FastAPI-Demo
 
-- [Tutorial Source Video](https://www.youtube.com/watch?v=cbASjoZZGIw)
 - Learning &amp; Notes on FastAPI
 - basic python
 - async out the box
 - Data validation is built in with Pydantic
 - Typed
 
+### Source Files
+
+- [Tutorial Source Video](https://www.youtube.com/watch?v=cbASjoZZGIw)
+- [Python Secrets](https://blog.gitguardian.com/how-to-handle-secrets-in-python/)
+
 # Step 0: Run FastAPI Server
+
+### Create Virtual Environment
+
+- Create Environment: `python -m venv venv`
+- Start Environment:
+  - MacOS: `source venv/bin/activate`
+  - Windows:
+- Install Requirements: pip install -r requirements.txt
+
+### Start Server
 
 - Run Server
   - CLI: `uvicorn main:app --reload`
